@@ -1,34 +1,68 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import { Header } from './components/Header';
+
+import clipboardImg from './assets/Clipboard.svg';
+import { PlusCircle } from 'phosphor-react';
+
+import styles from './App.module.css';
+import './global.css';
+import { Task } from './components/Task';
+import { ChangeEvent, FormEvent, useState } from 'react';
+
+export function App() {
+  const [tasks, setTasks] = useState([''])
+
+  const [newTaskText, setNewTaskText] = useState('');
+
+  function handleCreateNewTask(event: FormEvent) {
+    event.preventDefault();
+
+    setTasks([...tasks, newTaskText]);
+
+    setNewTaskText('');
+  }
+
+  function handleNewTaskChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    event.target.setCustomValidity('');
+
+    setNewTaskText(event.target.value);
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <>
+      <Header />
+
+      <div className={styles.wrapper}>
+        <form className={styles.taskForm} onSubmit={handleCreateNewTask}>
+          <textarea
+            placeholder="Adicione uma nova tarefa"
+            value={newTaskText}
+            onChange={handleNewTaskChange}
+          />
+          <button type="submit">Criar <PlusCircle size={16} /></button>
+        </form>
+
+        <div className={styles.numberOfTasks}>
+          <p>Tarefas criadas <span>{tasks.length}</span></p>
+          <p>Concluídas <span>0</span></p>
+        </div>
+
+        {tasks.map(task => (
+          <Task
+            task={task}
+          />
+        ))}
+
+        <div className={styles.emptyContentBox}>
+          <img src={clipboardImg} alt="Imagem de uma prancheta" />
+          <p>
+            <strong>Você ainda não tem tarefas cadastradas</strong>
+            Crie tarefas e organize seus itens a fazer
+          </p>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+
+    </>
   )
 }
 
-export default App
