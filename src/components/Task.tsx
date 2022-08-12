@@ -24,10 +24,11 @@ export function Task({ isDone, title, taskId, onDeleteTask, onCheckTask }: TaskP
         <div className={styles.taskContainer}>
             <div className={styles.taskContent}>
                 <input
+                    id="idForCheckbox"
                     type="checkbox"
                     onChange={handleCheckTask}
                 />
-                <p>{title}</p>
+                <label htmlFor="idForCheckbox">{title}</label>
             </div>
 
             <button className={styles.deleteButton} onClick={handleDeleteTask}>
