@@ -15,10 +15,14 @@
 .taskForm textarea {
     background: var(--gray-500);
     border: 1px solid var(--gray-700);
-    border-radius: 8px;
 
+    resize: none;
+
+    border-radius: 8px;
     padding: 1rem;
     height: 3.375rem;
+
+    color: var(--gray-100);
 
 }
 
@@ -84,4 +88,14 @@
     align-items: center;
     flex-direction: column;
 
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 87.5%;
+    }
+
+    .taskForm {
+        grid-template-columns: 1fr;
+    }
 }
