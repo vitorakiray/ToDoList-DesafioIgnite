@@ -30,7 +30,7 @@ export function App() {
     setNewTaskText('');
   }
 
-  function handleNewTaskChange(event: ChangeEvent<HTMLTextAreaElement>) {
+  function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
     event.target.setCustomValidity('');
 
     setNewTaskText(event.target.value);
@@ -64,6 +64,9 @@ export function App() {
   const quantityOfTasks = tasks.length;
   const isQuantityOfTasksZero = quantityOfTasks === 0;
 
+  const numberOfDoneTasks = tasks.filter(task => task.isDone).length;
+  const isQuantityOfDoneTasksZero = numberOfDoneTasks === 0;
+
   return (
     <>
       <Header />
@@ -71,7 +74,7 @@ export function App() {
       <div className={styles.wrapper}>
 
         <form className={styles.taskForm} onSubmit={handleCreateNewTask}>
-          <textarea
+          <input
             placeholder="Adicione uma nova tarefa"
             value={newTaskText}
             onChange={handleNewTaskChange}
@@ -80,8 +83,15 @@ export function App() {
         </form>
 
         <div className={styles.numberOfTasks}>
-          <p>Tarefas criadas <span>{quantityOfTasks}</span></p>
-          <p>Concluídas <span>0</span></p>
+          <div>
+            <p>Tarefas criadas</p>
+            <span>{quantityOfTasks}</span>
+          </div>
+
+          <div>
+            <p>Concluídas </p>
+            <span>{isQuantityOfDoneTasksZero ? '0' : `${numberOfDoneTasks} de ${quantityOfTasks}`}</span>
+          </div>
         </div>
 
         {isQuantityOfTasksZero ?

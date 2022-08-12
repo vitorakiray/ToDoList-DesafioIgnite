@@ -12,7 +12,7 @@
 
 }
 
-.taskForm textarea {
+.taskForm input {
     background: var(--gray-500);
     border: 1px solid var(--gray-700);
 
@@ -57,7 +57,15 @@
     color: var(--purple-300);
 }
 
-.numberOfTasks p:first-child {
+.numberOfTasks div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 0.5rem;
+}
+
+.numberOfTasks div:first-child {
     color: var(--blue-300);
 }
 
