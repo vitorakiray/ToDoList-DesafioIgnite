@@ -17,13 +17,16 @@ It was developed to complete the first challenge of the updated tile of the igni
 - Better Responsive Design
 
 ## 👨‍💻 Run the Project
-1. Clone the repository
-2. Install the dependencies
-```console
-npm i
+```sh
+# Cloning the latest version of the source tree
+git clone git@github.com:vitorakiray/ToDoList-DesafioIgnite.git
 ```
-3. Run the project
-```console
+
+```sh
+# Installing dependencies
+npm i
+
+# Running the project
 npm run dev
 ```
 
