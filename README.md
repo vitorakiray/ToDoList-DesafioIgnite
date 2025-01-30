@@ -31,4 +31,5 @@ npm run dev
 ```
 
 ## 👓 View the Project
+[Click here to open it on Vercel](https://to-do-list-desafio-ignite-seven.vercel.app)
 <img src="https://i.imgur.com/aUPOavK.png" alt="Imagem mostrando uma página do site to do list"/>
