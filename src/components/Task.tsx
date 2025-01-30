@@ -10,7 +10,7 @@ interface TaskProps {
     onCheckTask: (id: string) => void;
 }
 
-export function Task({ isDone, title, taskId, onDeleteTask, onCheckTask }: TaskProps) {
+export function Task({ title, taskId, onDeleteTask, onCheckTask }: TaskProps) {
     function handleDeleteTask() {
         onDeleteTask(taskId);
     }

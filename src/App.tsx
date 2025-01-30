@@ -12,7 +12,7 @@ import './global.css';
 export function App() {
   const [tasks, setTasks] = useState([{
     id: uuidv4(),
-    title: 'Ola',
+    title: 'Primeira tarefa',
     isDone: false,
   }])
 
@@ -21,11 +21,11 @@ export function App() {
   function handleCreateNewTask(event: FormEvent) {
     event.preventDefault();
 
-    setTasks([...tasks, {
+    setTasks([{
       id: uuidv4(),
       title: newTaskText,
       isDone: false,
-    }]);
+    }, ...tasks]);
 
     setNewTaskText('');
   }
@@ -44,16 +44,15 @@ export function App() {
     setTasks(taskWithoutDeletedOne);
   }
 
-  function checkTask(taskIdToCheck: string) {
+  function handleCheckTask(taskIdToCheck: string) {
     const tasksWithUpdatedTaskChecked = tasks.map(task => {
       if (task.id === taskIdToCheck) {
         return {
           ...task,
-          isDone: !task.isDone
+          isDone: true
         }
-
       } else {
-        return task
+        return {...task}
       }
     })
 
@@ -110,7 +109,7 @@ export function App() {
               isDone={task.isDone}
               title={task.title}
               onDeleteTask={deleteTask}
-              onCheckTask={checkTask}
+              onCheckTask={handleCheckTask}
             />
           ))
         }
